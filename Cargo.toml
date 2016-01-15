@@ -1,0 +1,25 @@
+[package]
+name = "epwd-rs"
+version = "0.1.0"
+authors = ["Nathan Fiedler <nathanfiedler@fastmail.fm>"]
+description = "Erlang interface to POSIX user database via Rust."
+homepage = "https://github.com/nlfiedler/epwd.rs"
+repository = "https://github.com/nlfiedler/epwd.rs.git"
+readme = "README.md"
+keywords = ["POSIX", "user", "database"]
+license = "Apache-2.0"
+
+[lib]
+name = "epwd_rs"
+crate-type = ["dylib"]
+
+[dependencies.users]
+git = "https://github.com/ogham/rust-users.git"
+tag = "v0.4.4"
+
+[dependencies.ruster_unsafe]
+git = "https://github.com/nlfiedler/ruster_unsafe.git"
+tag = "0.2.2"
+
+[dependencies]
+libc = "0.2.4"
