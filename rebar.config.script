@@ -1,0 +1,28 @@
+%%
+%% rebar configuration file (https://github.com/rebar/rebar)
+%%
+
+% Detect if gmake is present, and if so, use that instead of the default
+% 'make'. Our Makefile relies on GNU make features, and on BSD systems the
+% default 'make' will not suffice.
+Make = case os:find_executable("gmake") of
+    false -> "make";
+    Path  -> Path
+end.
+
+[
+    {require_otp_vsn, "17|18"},
+
+    {erl_opts, [debug_info, fail_on_warning]},
+
+    {clean_files, [
+        "ebin",
+        "logs",
+        "priv/*.so",
+        "src/*.beam",
+        "test/*.beam"
+    ]},
+
+    {pre_hooks, [{compile, Make ++ " build"}]},
+    {post_hooks, [{clean, Make ++ " clean"}]}
+] ++ CONFIG.
