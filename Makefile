@@ -18,6 +18,8 @@ build:
 else
 build:
 	cargo build
+	mkdir -p priv
+	cp target/debug/libepwd_rs.so priv/libepwd_rs.so
 endif
 
 clean:
