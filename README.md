@@ -1,34 +1,34 @@
 # epwd.rs
 
-A basic [Erlang](http://www.erlang.org) interface to the POSIX user database (e.g. `getpwnam()` and friends), via [Rust](https://www.rust-lang.org) bindings. Currently very few fuctions are exposed, generally only those that are needed for the [tanuki](https://github.com/nlfiedler/tanuki) project.
+A basic [Erlang](http://www.erlang.org) interface to the POSIX user database (e.g. `getpwnam()` and friends), via [Rust](https://www.rust-lang.org) bindings. Currently only two fuctions are exposed, the ones that are needed for the [tanuki](https://github.com/nlfiedler/tanuki) project.
 
 ## Requirements
 
 * Erlang/OTP R17|R18
-* [Rebar](https://github.com/rebar/rebar)
+* [Rebar3](http://www.rebar3.org/) 3.0.0 or higher
 * Rust (1.3 or higher should work)
 * Cargo
 
 ## Building and Testing
 
-The following should clean and build everything from scratch, including downloading dependencies.
+The following should build and test everything:
 
 ```
-$ rebar clean
-$ rebar compile
-$ rebar ct
+$ rebar3 ct
 ...
-DONE.
-Testing epwd.rs: TEST COMPLETE, 2 ok, 0 failed of 2 test cases
+===> Running Common Test suites...
+%%% epwd_rs_SUITE ==> test_getpwnam: OK
+%%% epwd_rs_SUITE ==> test_getpwuid: OK
+All 2 tests passed.
 ```
 
 ## Example
 
-Include as a dependency in your release, using rebar...
+Include as a dependency in your release, using rebar3...
 
 ```
 {deps, [
-    {epwd_rs, ".*", {git, "https://github.com/nlfiedler/epwd_rs", {tag, "0.1.0"}}}
+    {epwd_rs, {git, "https://github.com/nlfiedler/epwd_rs", {tag, "0.1.3"}}}
 ]}.
 ```
 

@@ -1,9 +1,12 @@
 {application, epwd_rs, [
     {description, "POSIX user database interface"},
-    {vsn, "0.1.0"},
+    {vsn, "0.1.3"},
     {registered, []},
     {modules, []},
-    {applications, [kernel, stdlib]},
+    {applications, [
+        kernel,
+        stdlib
+    ]},
     {mod, {epwd_rs, []}},
     {env, []}
 ]}.
