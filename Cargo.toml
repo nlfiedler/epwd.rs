@@ -1,6 +1,6 @@
 [package]
 name = "epwd-rs"
-version = "0.1.4"
+version = "0.1.5"
 authors = ["Nathan Fiedler <nathanfiedler@fastmail.fm>"]
 description = "Erlang interface to POSIX user database via Rust."
 homepage = "https://github.com/nlfiedler/epwd.rs"
@@ -18,8 +18,8 @@ git = "https://github.com/ogham/rust-users.git"
 tag = "v0.4.4"
 
 [dependencies.ruster_unsafe]
-git = "https://github.com/nlfiedler/ruster_unsafe.git"
-tag = "0.3.1"
+git = "https://github.com/goertzenator/ruster_unsafe.git"
+tag = "0.4.0"
 
 [dependencies]
 libc = ">=0.2"
