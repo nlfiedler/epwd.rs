@@ -1,6 +1,6 @@
 {application, epwd_rs, [
     {description, "POSIX user database interface"},
-    {vsn, "0.1.5"},
+    {vsn, "0.1.6"},
     {registered, []},
     {modules, []},
     {applications, [

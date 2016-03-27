@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.1.6] - 2016-03-26
+### Changed
+- Upgrade to rust-users 0.5.1
+
 ## [0.1.5] - 2016-03-23
 ### Changed
 - Switch back to original ruster_unsafe crate.

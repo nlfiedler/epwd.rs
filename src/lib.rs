@@ -23,6 +23,7 @@ use ruster_unsafe::*;
 use std::ffi::CString;
 use std::mem::uninitialized;
 use libc::{c_uchar, uid_t};
+use users::os::unix::UserExt;
 
 /// Create NIF module data and init function.
 nif_init!(b"epwd_rs\0", None, None, None, None,
@@ -82,17 +83,20 @@ extern "C" fn getpwuid(env: *mut ErlNifEnv,
 /// Produce a property list consisting of the details of the given user.
 /// Keys include pw_uid, pw_gid, pw_name, pw_dir, and pw_shell.
 fn make_user_proplist(env: *mut ErlNifEnv, user: users::User) -> ERL_NIF_TERM {
-    let uid = unsafe { enif_make_uint(env, user.uid) };
+    let uid = unsafe { enif_make_uint(env, user.uid()) };
     let uid_tuple = make_tuple(env, "pw_uid", &uid);
-    let gid = unsafe { enif_make_uint(env, user.primary_group) };
+    let gid = unsafe { enif_make_uint(env, user.primary_group_id()) };
     let gid_tuple = make_tuple(env, "pw_gid", &gid);
-    let name_str = unsafe { enif_make_string_len(env, user.name.as_ptr(), user.name.len(),
+    let user_name = user.name();
+    let name_str = unsafe { enif_make_string_len(env, user_name.as_ptr(), user_name.len(),
         ErlNifCharEncoding::ERL_NIF_LATIN1) };
     let name_tuple = make_tuple(env, "pw_name", &name_str);
-    let home_str = unsafe { enif_make_string_len(env, user.home_dir.as_ptr(), user.home_dir.len(),
+    let home_dir = user.home_dir().to_str().unwrap();
+    let home_str = unsafe { enif_make_string_len(env, home_dir.as_ptr(), home_dir.len(),
         ErlNifCharEncoding::ERL_NIF_LATIN1) };
     let home_tuple = make_tuple(env, "pw_dir", &home_str);
-    let shell_str = unsafe { enif_make_string_len(env, user.shell.as_ptr(), user.shell.len(),
+    let shell = user.shell().to_str().unwrap();
+    let shell_str = unsafe { enif_make_string_len(env, shell.as_ptr(), shell.len(),
         ErlNifCharEncoding::ERL_NIF_LATIN1) };
     let shell_tuple = make_tuple(env, "pw_shell", &shell_str);
     let list_elems = [uid_tuple, gid_tuple, name_tuple, home_tuple, shell_tuple];
