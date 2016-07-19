@@ -15,20 +15,20 @@
  */
 
 #[macro_use]
-extern crate ruster_unsafe;
+extern crate erlang_nif_sys;
 extern crate users;
 extern crate libc;
 
-use ruster_unsafe::*;
+use erlang_nif_sys::*;
 use std::ffi::CString;
 use std::mem::uninitialized;
-use libc::{c_uchar, uid_t};
+use libc::uid_t;
 use users::os::unix::UserExt;
 
 /// Create NIF module data and init function.
 nif_init!(b"epwd_rs\0", None, None, None, None,
-     nif!(b"getpwnam\0", 1, getpwnam, 0),
-     nif!(b"getpwuid\0", 1, getpwuid, 0)
+     nif!(b"getpwnam\0", 1, getpwnam),
+     nif!(b"getpwuid\0", 1, getpwuid)
     );
 
 /// Retrieve the details for the named user as a property list.

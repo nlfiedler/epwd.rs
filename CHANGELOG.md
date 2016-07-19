@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.1.7] - 2016-07-18
+### Changed
+- Upgrade to erlang_nif-sys (née ruster_unsafe) 0.5.2
+
 ## [0.1.6] - 2016-03-26
 ### Changed
 - Upgrade to rust-users 0.5.1

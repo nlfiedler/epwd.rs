@@ -4,7 +4,7 @@ A basic [Erlang](http://www.erlang.org) interface to the POSIX user database (e.
 
 ## Requirements
 
-* Erlang/OTP R17|R18
+* Erlang/OTP R17 or higher
 * [Rebar3](http://www.rebar3.org/) 3.0.0 or higher
 * Rust (1.3 or higher should work)
 * Cargo
@@ -28,7 +28,7 @@ Include as a dependency in your release, using rebar3...
 
 ```
 {deps, [
-    {epwd_rs, {git, "https://github.com/nlfiedler/epwd_rs", {tag, "0.1.6"}}}
+    {epwd_rs, {git, "https://github.com/nlfiedler/epwd_rs", {tag, "0.1.7"}}}
 ]}.
 ```
 
