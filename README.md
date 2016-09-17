@@ -32,6 +32,8 @@ Include as a dependency in your release, using rebar3...
 ]}.
 ```
 
+Be sure to include `epwd_rs` in the `included_applications` list of your application configuration before building a release.
+
 Fetching the details of a user by their name...
 
 ```
