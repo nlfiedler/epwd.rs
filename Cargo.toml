@@ -1,6 +1,6 @@
 [package]
 name = "epwd-rs"
-version = "0.1.7"
+version = "0.1.8"
 authors = ["Nathan Fiedler <nathanfiedler@fastmail.fm>"]
 description = "Erlang interface to POSIX user database via Rust."
 homepage = "https://github.com/nlfiedler/epwd.rs"
@@ -11,7 +11,7 @@ license = "Apache-2.0"
 
 [lib]
 name = "epwd_rs"
-crate-type = ["dylib"]
+crate-type = ["cdylib"]
 
 [dependencies.users]
 git = "https://github.com/ogham/rust-users.git"
@@ -19,7 +19,7 @@ tag = "v0.5.1"
 
 [dependencies.erlang_nif-sys]
 git = "https://github.com/goertzenator/erlang_nif-sys.git"
-tag = "0.5.2"
+tag = "0.5.4"
 
 [dependencies]
 libc = ">=0.2"

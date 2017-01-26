@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.1.8] - 2017-01-25
+### Changed
+- Upgrade to erlang_nif-sys 0.5.4
+- Changed `crate-type` to `cdylib`
+
 ## [0.1.7] - 2016-07-18
 ### Changed
 - Upgrade to erlang_nif-sys (née ruster_unsafe) 0.5.2
