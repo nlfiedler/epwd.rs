@@ -29,6 +29,10 @@ init_per_suite(Config) ->
     ok = application:load(epwd_rs),
     Config.
 
+% So this has to be defined now?
+end_per_suite(Config) ->
+    Config.
+
 all() ->
     [
         test_getpwnam,
