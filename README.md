@@ -28,7 +28,7 @@ Include as a dependency in your release, using rebar3...
 
 ```
 {deps, [
-    {epwd_rs, {git, "https://github.com/nlfiedler/epwd_rs", {tag, "0.1.8"}}}
+    {epwd_rs, {git, "https://github.com/nlfiedler/epwd_rs", {tag, "0.1.9"}}}
 ]}.
 ```
 

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.1.9] - 2017-07-03
+### Changed
+- Upgrade erlang_nif-sys to support Erlang/OTP 20.
+
 ## [0.1.8] - 2017-01-25
 ### Changed
 - Upgrade to erlang_nif-sys 0.5.4
