@@ -32,7 +32,15 @@ Include as a dependency in your release, using rebar3...
 ]}.
 ```
 
-Be sure to include `epwd_rs` in the `included_applications` list of your application configuration before building a release.
+Be sure to include `epwd_rs` in the `included_applications` list of your Erlang application configuration before building a release. For Elixir, simply list it as a dependency and add the `runtime: false` option to prevent starting it, as it does not have an application start function.
+
+```
+defp deps do
+  [
+    {:epwd_rs, github: "nlfiedler/epwd.rs", tag: "0.1.9", runtime: false}
+  ]
+end
+```
 
 Fetching the details of a user by their name...
 
