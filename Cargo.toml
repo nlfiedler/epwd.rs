@@ -1,6 +1,6 @@
 [package]
 name = "epwd-rs"
-version = "0.1.9"
+version = "0.2.0"
 authors = ["Nathan Fiedler <nathanfiedler@fastmail.fm>"]
 description = "Erlang interface to POSIX user database via Rust."
 homepage = "https://github.com/nlfiedler/epwd.rs"
