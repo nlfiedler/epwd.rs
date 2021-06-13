@@ -13,10 +13,7 @@ license = "Apache-2.0"
 name = "epwd_rs"
 crate-type = ["cdylib"]
 
-[dependencies.users]
-git = "https://github.com/ogham/rust-users.git"
-tag = "v0.5.1"
-
 [dependencies]
 libc = ">=0.2"
 erlang_nif-sys = "0.6.2"
+users = "^0.5.1"
