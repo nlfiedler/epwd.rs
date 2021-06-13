@@ -28,7 +28,7 @@ Include as a dependency in your release, using rebar3...
 
 ```
 {deps, [
-    {epwd_rs, {git, "https://github.com/nlfiedler/epwd_rs", {tag, "0.1.9"}}}
+    {epwd_rs, {git, "https://github.com/nlfiedler/epwd_rs", {tag, "0.2.0"}}}
 ]}.
 ```
 
@@ -37,7 +37,7 @@ Be sure to include `epwd_rs` in the `included_applications` list of your Erlang 
 ```
 defp deps do
   [
-    {:epwd_rs, github: "nlfiedler/epwd.rs", tag: "0.1.9", runtime: false}
+    {:epwd_rs, github: "nlfiedler/epwd.rs", tag: "0.2.0", runtime: false}
   ]
 end
 ```
