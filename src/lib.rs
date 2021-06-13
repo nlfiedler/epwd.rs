@@ -27,23 +27,18 @@ rustler::init!("epwd_rs", [getpwnam, getpwuid]);
 
 /// Retrieve the details for the named user as a property list.
 #[rustler::nif]
-fn getpwnam(name: Vec<u8>) -> Result<User, Vec<u8>> {
-   let rname = std::str::from_utf8(&name);
-   if rname.is_err() {
-       return Err("invalid name".as_bytes().to_vec());
-   }
-
-    match users::get_user_by_name(&rname.unwrap()) {
+fn getpwnam(name: String) -> Result<User, String> {
+    match users::get_user_by_name(&name) {
         Some(user) => Ok(User::from(user)),
-        None => Err("no such user".as_bytes().to_vec())
+        None => Err(String::from("no such user"))
     }
 }
 
 #[rustler::nif]
-fn getpwuid(uid: u32) -> Result<User, Vec<u8>> {
+fn getpwuid(uid: u32) -> Result<User, String> {
     match users::get_user_by_uid(uid as libc::uid_t) {
         Some(user) => Ok(User::from(user)),
-        None => Err("no such user".as_bytes().to_vec())
+        None => Err(String::from("no such user"))
     }
 }
 
@@ -53,9 +48,9 @@ fn getpwuid(uid: u32) -> Result<User, Vec<u8>> {
 struct User {
     pub pw_uid: uid_t,
     pub pw_gid: gid_t,
-    pub pw_name: Vec<u8>,
-    pub pw_dir: Vec<u8>,
-    pub pw_shell: Vec<u8>,
+    pub pw_name: String,
+    pub pw_dir: String,
+    pub pw_shell: String,
 }
 
 impl From<users::User> for User {
@@ -63,9 +58,9 @@ impl From<users::User> for User {
         User{
             pw_uid: user.uid(),
             pw_gid: user.primary_group_id(),
-            pw_name: user.name().to_str().unwrap().as_bytes().to_vec(),
-            pw_dir: user.home_dir().to_str().unwrap().as_bytes().to_vec(),
-            pw_shell: user.shell().to_str().unwrap().as_bytes().to_vec(),
+            pw_name: user.name().to_str().unwrap().to_string(),
+            pw_dir: user.home_dir().to_str().unwrap().to_string(),
+            pw_shell: user.shell().to_str().unwrap().to_string(),
         }
     }
 }

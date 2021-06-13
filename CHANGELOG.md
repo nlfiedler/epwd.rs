@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Migrate from erlang_nif-sys to Rustler
 - Return map objects instead of property lists
+- Accept and return binary strings instead of char lists
 
 ## [0.1.9] - 2017-07-03
 ### Changed

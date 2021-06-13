@@ -45,20 +45,20 @@ test_getpwnam(_Config) ->
     % that the returned structure appears to be correct. Most values cannot be
     % asserted as they are system dependent.
     %
-    Username = os:getenv("USER", "root"),
+    Username = list_to_binary(os:getenv("USER", "root")),
     {ok, Results} = epwd_rs:getpwnam(Username),
     ?assert(is_map(Results)),
     ?assertEqual(5, maps:size(Results)),
     ?assert(is_integer(maps:get(pw_uid, Results))),
     ?assert(is_integer(maps:get(pw_gid, Results))),
     ?assertEqual(Username, maps:get(pw_name, Results)),
-    ?assert(is_list(maps:get(pw_dir, Results))),
-    ?assert(is_list(maps:get(pw_shell, Results))),
+    ?assert(is_binary(maps:get(pw_dir, Results))),
+    ?assert(is_binary(maps:get(pw_shell, Results))),
     %
     % Negative case, no such user
     %
-    {error, Reason} = epwd_rs:getpwnam("bozo"),
-    ?assertEqual("no such user", Reason),
+    {error, Reason} = epwd_rs:getpwnam(<<"bozo">>),
+    ?assertEqual(<<"no such user">>, Reason),
     ok.
 
 test_getpwuid(_Config) ->
@@ -71,7 +71,7 @@ test_getpwuid(_Config) ->
     ?assertEqual(5, maps:size(Results)),
     ?assertEqual(0, maps:get(pw_uid, Results)),
     ?assert(is_integer(maps:get(pw_gid, Results))),
-    ?assertEqual("root", maps:get(pw_name, Results)),
-    ?assert(is_list(maps:get(pw_dir, Results))),
-    ?assert(is_list(maps:get(pw_shell, Results))),
+    ?assertEqual(<<"root">>, maps:get(pw_name, Results)),
+    ?assert(is_binary(maps:get(pw_dir, Results))),
+    ?assert(is_binary(maps:get(pw_shell, Results))),
     ok.
