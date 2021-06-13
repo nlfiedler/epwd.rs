@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased] - 2021-06-12
+### Changed
+- Migrate from erlang_nif-sys to Rustler
+- Return map objects instead of property lists
+
 ## [0.1.9] - 2017-07-03
 ### Changed
 - Upgrade erlang_nif-sys to support Erlang/OTP 20.

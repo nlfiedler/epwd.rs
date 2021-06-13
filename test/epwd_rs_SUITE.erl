@@ -47,13 +47,13 @@ test_getpwnam(_Config) ->
     %
     Username = os:getenv("USER", "root"),
     {ok, Results} = epwd_rs:getpwnam(Username),
-    ?assert(is_list(Results)),
-    ?assertEqual(5, length(Results)),
-    ?assert(is_tuple(proplists:lookup(pw_uid, Results))),
-    ?assert(is_tuple(proplists:lookup(pw_gid, Results))),
-    ?assertEqual(Username, proplists:get_value(pw_name, Results)),
-    ?assert(is_tuple(proplists:lookup(pw_dir, Results))),
-    ?assert(is_tuple(proplists:lookup(pw_shell, Results))),
+    ?assert(is_map(Results)),
+    ?assertEqual(5, maps:size(Results)),
+    ?assert(is_integer(maps:get(pw_uid, Results))),
+    ?assert(is_integer(maps:get(pw_gid, Results))),
+    ?assertEqual(Username, maps:get(pw_name, Results)),
+    ?assert(is_list(maps:get(pw_dir, Results))),
+    ?assert(is_list(maps:get(pw_shell, Results))),
     %
     % Negative case, no such user
     %
@@ -67,11 +67,11 @@ test_getpwuid(_Config) ->
     % systems, and very likely has the name "root".
     %
     {ok, Results} = epwd_rs:getpwuid(0),
-    ?assert(is_list(Results)),
-    ?assertEqual(5, length(Results)),
-    ?assertEqual(0, proplists:get_value(pw_uid, Results)),
-    ?assert(is_tuple(proplists:lookup(pw_gid, Results))),
-    ?assertEqual("root", proplists:get_value(pw_name, Results)),
-    ?assert(is_tuple(proplists:lookup(pw_dir, Results))),
-    ?assert(is_tuple(proplists:lookup(pw_shell, Results))),
+    ?assert(is_map(Results)),
+    ?assertEqual(5, maps:size(Results)),
+    ?assertEqual(0, maps:get(pw_uid, Results)),
+    ?assert(is_integer(maps:get(pw_gid, Results))),
+    ?assertEqual("root", maps:get(pw_name, Results)),
+    ?assert(is_list(maps:get(pw_dir, Results))),
+    ?assert(is_list(maps:get(pw_shell, Results))),
     ok.
